@@ -1,5 +1,5 @@
 # td-mathamatica-api
-A basic project to allow data from TD to be imported into a Mathematica notebook. 
+A basic project to allow live pricing data from TD Ameritrade API to be imported into a Mathematica notebook. 
 
 # Some benefits of TD's API
 I was able to sign up for both a DTD brokerage account and developer portal in a few hours. There was no real paper work to fill out. 
