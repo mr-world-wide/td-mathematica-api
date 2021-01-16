@@ -1,0 +1,124 @@
+Notebook[{Cell[
+CellGroupData[{Cell[
+TextData[{"TD"," ","Ameritrade"," ","API"," ","Wrapper"}],
+"Title",ExpressionUUID -> "2e7fca64-980c-43ba-9d59-25609ef34020"],Cell[
+TextData[
+{"By"," ","far"," ","the"," ","hardest"," ","part"," ","of"," ","this"," ","process"," ","is"," ","getting"," ","the"," ","refresh"," ","token"," ","from"," ","TD",StyleBox[
+RowBox[{"."," "}]],"It"," ","took"," ","me"," ","half"," ","a"," ","day"," ","to"," ","find"," ","this"," ","guide",StyleBox[
+RowBox[{","," "}]],"and"," ","from"," ","there"," ","it"," ","was"," ","only"," ","about"," ","one"," ","hours"," ","work",StyleBox[
+RowBox[{"."," "}]],"https","://","www",".","reddit",".","com","/","r","/","algotrading","/","comments","/","c81vzq","/","td_ameritrade_api_access_2019_guide",StyleBox[
+RowBox[{"/"," ","."," "}]],"Do"," ","this"," ","first",StyleBox[RowBox[{","," "}]],"and"," ","come"," ","back"," ","once"," ","you"," ","have"," ","a"," ","refresh"," ","token",StyleBox[
+RowBox[{"."," "}]],"\n","\n","Your"," ","client"," ","ID"," ","is"," ","available"," ","from"," ","the"," ","application"," ","you"," ","register"," ","in"," ","your"," ","TD"," ","Developer"," ","account",StyleBox[
+RowBox[{"."," "}]],"\n","\n","The"," ","only"," ","two"," ","variables"," ","you"," ","need"," ","to"," ","update"," ","her"," ","are"," ","refresh"," ","token"," ","and"," ","clientid",StyleBox[
+RowBox[{","," "}]],"every"," ","thing"," ","else"," ","you"," ","just"," ","need"," ","to"," ","revaulate"," ","once"," ","you"," ","have"," ","those",StyleBox[
+RowBox[{"."," "}]],"\n","\n","I"," ","have"," ","hidden"," ","all"," ","the"," ","outputs"," ","with"," ","the",StyleBox[
+RowBox[{" ",";"," "}]],"at"," ","the"," ","end"," ","of"," ","each"," ","line",StyleBox[
+RowBox[{"."," "}]],"If"," ","it"," ","isn't"," ","working"," ","for"," ","you",StyleBox[
+RowBox[{","," "}]],"removing"," ","those"," ","might"," ","give"," ","you"," ","an"," ","idea"," ","as"," ","to"," ","why","."}],
+"Text",ExpressionUUID -> "fa42ef77-8fcd-4b04-b12b-a9e43788e49c"],Cell[
+CellGroupData[
+{Cell[
+"\<Authentication\>","Section",ExpressionUUID -> "539a06c2-9b46-44cc-8b94-3ef5bb9eaf6f"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{"\n",RowBox[{RowBox[{"refreshtoken"," ","="," ","\"your refresh token here\""}],";"}]," ",RowBox[
+{"(*"," ",RowBox[{RowBox[{RowBox[{"This"," ","is"," ","the"," ","hardest"," ","thing"," ","to"," ","obtain"," ","from"," ",RowBox[
+{"td","."," ","I"}]," ","would"," ","strongly"," ","reccomend"," ","following"," ","the"," ","instructions"," ","from"," ",RowBox[
+{"https",":"}]}],"//",RowBox[{RowBox[{RowBox[{RowBox[{RowBox[{RowBox[{RowBox[{"www",".","reddit",".","com"}],"/","r"}],"/","algotrading"}],"/","comments"}],"/","c81vzq"}],"/","td_ameritrade"}],"_api","_access","_","2019",RowBox[
+{"_guide","/"," ","Once"}]," ","you"," ","have"," ","it"}]}],","," ",RowBox[{"be"," ","sure"," ","to"," ","include"," ","it"," ","as"," ","a"," ","string"}]}],"*)"}]}],RowBox[
+{"\n","\n"}],RowBox[{RowBox[{RowBox[{"clientid"," ","="," ","\"your client id here 40AMER.OAUTHAP\""}],";"}]," ",RowBox[
+{"(*",RowBox[{"include"," ","%40",RowBox[{"AMER",".","OAUTHAP"}]," ","at"," ","the"," ","end"," ","and"," ","make"," ","the"," ","whole"," ","thing"," ","a"," ","string"}],"*)"}]}],RowBox[
+{"\n","\n"}],RowBox[{RowBox[{"header"," ","="," ","\"application/x-www-form-urlencoded\""}],";"}],"\n",RowBox[
+{"body"," ","="," ",RowBox[{"StringJoin","[",RowBox[{"\"grant_type=refresh_token&refresh_token=\"",","," ","refreshtoken",","," ","\"&access_type=&code=&client_id=\"",","," ","clientid",","," ","\"&redirect_uri=\""}],"]"}]}],RowBox[
+{"\n","\n"}],RowBox[{RowBox[{"authenticate"," ","="," ",RowBox[{"URLFetch","["," ",RowBox[
+{"\"https://api.tdameritrade.com/v1/oauth2/token\"",",",RowBox[{"\"Method\""," ","\[Rule]"," ","\"POST\""}],",",RowBox[
+{"\"Headers\""," ","\[Rule]"," ",RowBox[{"{",RowBox[{"\"Content-Type\""," ","\[Rule]"," ","header"}],"}"}]}],","," ",RowBox[
+{"\"Body\"","\[Rule]"," ","body"}]}],"]"}]}],";"}],RowBox[{"\n","\n"}],RowBox[{RowBox[
+{"token"," ","="," ",RowBox[{"StringJoin","[",RowBox[{"\"Bearer \""," ",",",RowBox[
+{RowBox[{"ImportString","[",RowBox[{"authenticate",","," ","\"RawJSON\""}],"]"}],"[","\"access_token\"","]"}]}],"]"}]}],";"}],RowBox[
+{"\n","\n"}],RowBox[{RowBox[{"header"," ","="," ",RowBox[{"{",RowBox[{RowBox[{"\"Content-Type\""," ","\[Rule]"," ","\"application/x-www-form-urlencoded\""}],","," ",RowBox[
+{"\"Authorization\""," ","\[Rule]","token"}]}],"}"}]}],";"}]}],"Input",ExpressionUUID -> "97808b2c-17d5-40c4-a5ec-2721ca2f9978"],Cell[
+BoxData[
+"\"grant_type=refresh_token&refresh_token=your refresh token here&access_type=&code=&client_id=40AMER.OAUTHAP&redirect_uri=\"",
+StandardForm],"Output",CellLabel -> "Out[98]= ",ExpressionUUID -> "b7c82d81-99ce-407c-acba-299ce602a1c0"],Cell[
+BoxData[
+TemplateBox[{"StringJoin","string","\"String expected at position \\!\\(\\*TagBox[\\\"2\\\", Short[#1, 5] & ]\\) in \\!\\(\\*TagBox[RowBox[{\\\"\\\\\\\"Bearer \\\\\\\"\\\", \\\"<>\\\", RowBox[{\\\"Missing\\\", \\\"[\\\", RowBox[{\\\"\\\\\\\"KeyAbsent\\\\\\\"\\\", \\\",\\\", \\\"\\\\\\\"access_token\\\\\\\"\\\"}], \\\"]\\\"}]}], Short[#1, 5] & ]\\).\"",2,100,11,31218221359448200517,"Local"},
+"MessageTemplate"],StandardForm],"Message","MSG",ExpressionUUID -> "618f905e-970e-4cd5-8711-0efcb00810d1"]},
+Open],ExpressionUUID -> "e3459c72-95ea-44b3-ae44-b87ea8173154"],Cell[
+CellGroupData[
+{Cell[
+TextData[{"Using"," ","your"," ","new"," ","Token"}],"Subsection",ExpressionUUID -> "3a22f8c5-fd32-4c9d-b9a5-dc0e8955cb3d"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"stock"," ","="," ","\"TWTR\""}],";"}],"\n",RowBox[
+{"response"," ","="," ",RowBox[{"URLFetch","[",RowBox[{RowBox[{"StringJoin","[",RowBox[
+{"\"https://api.tdameritrade.com/v1/marketdata/\"",",","stock",",","\"/quotes\""}],"]"}],","," ",RowBox[
+{"\"Headers\""," ","\[Rule]"," ",RowBox[{"{",RowBox[{RowBox[{"\"Content-Type\""," ","\[Rule]"," ","\"application/x-www-form-urlencoded\""}],","," ",RowBox[
+{"\"Authorization\""," ","\[Rule]","token"}]}],"}"}]}]}],"]"}]," "}]}],"Input",CellLabel -> "In[62]:= ",
+ExpressionUUID -> "8a564e5e-9f55-4c5e-aac5-8fa729001899"],Cell[
+BoxData["\"{\\\"TWTR\\\":{\\\"assetType\\\":\\\"EQUITY\\\",\\\"assetMainType\\\":\\\"EQUITY\\\",\\\"cusip\\\":\\\"90184L102\\\",\\\"symbol\\\":\\\"TWTR\\\",\\\"description\\\":\\\"Twitter, Inc. Common Stock\\\",\\\"bidPrice\\\":45.05,\\\"bidSize\\\":500,\\\"bidId\\\":\\\"P\\\",\\\"askPrice\\\":45.14,\\\"askSize\\\":400,\\\"askId\\\":\\\"P\\\",\\\"lastPrice\\\":45.08,\\\"lastSize\\\":0,\\\"lastId\\\":\\\"T\\\",\\\"openPrice\\\":46.1,\\\"highPrice\\\":46.2,\\\"lowPrice\\\":45.08,\\\"bidTick\\\":\\\" \\\",\\\"closePrice\\\":45.18,\\\"netChange\\\":-0.1,\\\"totalVolume\\\":25937338,\\\"quoteTimeInLong\\\":1610758797769,\\\"tradeTimeInLong\\\":1610758797769,\\\"mark\\\":45.18,\\\"exchange\\\":\\\"n\\\",\\\"exchangeName\\\":\\\"NYSE\\\",\\\"marginable\\\":true,\\\"shortable\\\":true,\\\"volatility\\\":0.0211,\\\"digits\\\":2,\\\"52WkHigh\\\":56.11,\\\"52WkLow\\\":20.0,\\\"nAV\\\":0.0,\\\"peRatio\\\":0.0,\\\"divAmount\\\":0.0,\\\"divYield\\\":0.0,\\\"divDate\\\":\\\"\\\",\\\"securityStatus\\\":\\\"Normal\\\",\\\"regularMarketLastPrice\\\":45.18,\\\"regularMarketLastSize\\\":14507,\\\"regularMarketNetChange\\\":0.0,\\\"regularMarketTradeTimeInLong\\\":1610755200004,\\\"netPercentChangeInDouble\\\":-0.2213,\\\"markChangeInDouble\\\":0.0,\\\"markPercentChangeInDouble\\\":0.0,\\\"regularMarketPercentChangeInDouble\\\":0.0,\\\"delayed\\\":false}}\"",
+StandardForm],"Output",CellLabel -> "Out[63]= ",ExpressionUUID -> "791f4548-5915-404f-93e7-e284a64de64f"]},
+Open],ExpressionUUID -> "6a9482a1-0a14-4684-a4e3-e8a05f8cb570"],Cell[
+CellGroupData[
+{Cell[
+TextData[{"The"," ","response"," ","gives"," ","us"," ","back"," ","a"," ","JSON"," ","object",StyleBox[
+RowBox[{","," "}]],"which"," ","we"," ","can"," ","import"," ","and"," ","then"," ","dig"," ","out"," ","the"," ","data"," ","we"," ","need","."}],
+"Subsubsection",ExpressionUUID -> "e3a3fcec-f268-49e1-9482-36e3e282459f"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"data"," ","="," ",RowBox[{"ImportString","[",RowBox[
+{"response",","," ","\"RawJSON\""}],"]"}]}],";"}],RowBox[{"\n","\n"}],RowBox[{"bidPrice"," ","="," ",RowBox[
+{RowBox[{"data","[","stock","]"}],"[","\"bidPrice\"","]"}],"  ",RowBox[{"(*"," ",RowBox[
+{"this"," ","will"," ","be"," ","a"," ","real"," ","time"," ","quote"}]," ","*)"}]}],"\n",RowBox[
+{"askPrice"," ","="," ",RowBox[{RowBox[{"data","[","stock","]"}],"[","\"askPrice\"","]"}]}],"\n",RowBox[
+{"lastPrice"," ","="," ",RowBox[{RowBox[{"data","[","stock","]"}],"[","\"lastPrice\"","]"}]}],"\n",RowBox[
+{RowBox[{"volatilty"," ","="," ",RowBox[{RowBox[{"data","[","stock","]"}],"[","\"volatility\"","]"}]}],"\n"}]}],
+"Input",CellLabel -> "In[83]:= ",ExpressionUUID -> "0b06d22e-ba68-4ed9-8b49-fe8bf5500081"],Cell[
+BoxData[
+"45.05`",StandardForm],"Output",CellLabel -> "Out[84]= ",ExpressionUUID -> "3a4a8197-152c-40d1-b157-d5a9ec6d8d8d"],Cell[
+BoxData[
+"45.14`",StandardForm],"Output",CellLabel -> "Out[85]= ",ExpressionUUID -> "1ca88e95-93a3-43e4-80d1-4cbd4d93c88e"],Cell[
+BoxData[
+"45.08`",StandardForm],"Output",CellLabel -> "Out[86]= ",ExpressionUUID -> "1756258a-f567-409c-9ef4-d4e8a0fe9c27"],Cell[
+BoxData[
+"0.0211`",StandardForm],"Output",CellLabel -> "Out[87]= ",ExpressionUUID -> "27bf5ba9-a7ee-407e-bdfa-0910594695fc"]},
+Open],ExpressionUUID -> "0afe3d5e-0772-4879-9b19-3c31f3d67cee"]},Open],ExpressionUUID -> "d91617a2-3dc0-4610-a291-585fc5a94d34"]},
+Open],ExpressionUUID -> "8a85e1b8-77c1-4f36-8c88-e25c3ee996b2"]},Open],ExpressionUUID -> "fda3f3a9-9475-47c1-a063-6f5ec86e5155"],Cell[
+CellGroupData[
+{Cell[
+"\<Extending\>","Section",ExpressionUUID -> "1dc89d13-656f-4d53-8a62-1b65a17b9781"],Cell[
+TextData[
+{"This"," ","is"," ","making"," ","use"," ","of"," ","one"," ","endpoint",StyleBox[
+RowBox[{","," "}]],"the"," ","main"," ","other"," ","interesting"," ","ones"," ","are"," ","the"," ","options"," ","chain",StyleBox[
+RowBox[{","," "}]],"which"," ","I"," ","will"," ","work"," ","on"," ","next"," ","and"," ","some"," ","of"," ","the"," ","automatic"," ","trading"," ","ones",".","\n","\n","I"," ","am"," ","in"," ","no"," ","way"," ","a"," ","Mathematica"," ","programmer",StyleBox[
+RowBox[{","," "}]],"I"," ","have"," ","some"," ","experince"," ","working"," ","with"," ","API's"," ","which"," ","is"," ","how"," ","I"," ","figured"," ","this"," ","out",StyleBox[
+RowBox[{"."," "}]],"There"," ","may"," ","be"," ","better"," ","methods"," ","than"," ","URL"," ","Fetch",StyleBox[
+RowBox[{","," "}]],"but"," ","this"," ","worked"," ","best",".","\n","\n","I"," ","am"," ","not"," ","sure"," ","the"," ","best"," ","way"," ","to"," ","share"," ","this"," ","in"," ","the"," ","Mathamatica"," ","world",StyleBox[
+RowBox[{"."," "}]],"I"," ","might"," ","upload"," ","it"," ","to"," ","Github",StyleBox[
+RowBox[{","," "}]],"so"," ","we"," ","get"," ","some"," ","version"," ","control","."}],
+"Text",ExpressionUUID -> "93df503d-ce76-4026-ac93-ac82f37613f4"]},Open],ExpressionUUID -> "bbb4523e-a502-4b3e-ac6a-ef9e08e3fe4b"],Cell[
+CellGroupData[
+{Cell[
+"\<Pitfalls\>","Section",ExpressionUUID -> "7e3b418e-a1d8-43be-8d40-5db09286d22f"],Cell[
+TextData[
+{"1",StyleBox[RowBox[{"."," "}]],"The"," ","token"," ","you"," ","get"," ","last"," ","30"," ","minutes",StyleBox[
+RowBox[{","," "}]],"you"," ","will"," ","need"," ","to"," ","rerun"," ","the"," ","Authenticate"," ","method"," ","every"," ","30"," ","minutes",".","\n","2",StyleBox[
+RowBox[{"."," "}]],"The"," ","refresh"," ","token"," ","at"," ","the"," ","very"," ","top"," ","lasts"," ","90"," ","days",StyleBox[
+RowBox[{","," "}]],"but"," ","will"," ","eventually"," ","expire",StyleBox[RowBox[
+{"."," "}]],"Just"," ","be"," ","aware",".","\n"}],"Text",ExpressionUUID -> "1596462b-bb10-43fb-ad05-c79dde1aace8"]},
+Open],ExpressionUUID -> "b3a28ba3-1975-4879-aad8-ebdf6b0239c7"],Cell[
+CellGroupData[
+{Cell[
+"\<Security\>","Section",ExpressionUUID -> "bbeeddc7-551e-4223-a159-424ba8f1c8dc"],Cell[
+TextData[
+{"Be"," ","very"," ","careful"," ","with"," ","your"," ","refresh"," ","token",StyleBox[
+RowBox[{"."," "}]],"Don't"," ","share"," ","it"," ","with"," ","others"," ","or"," ","on"," ","the"," ","internet",StyleBox[
+RowBox[{","," "}]],"as"," ","hackers"," ","could"," ","use"," ","it"," ","to"," ","make"," ","trades"," ","on"," ","your"," ","account",StyleBox[
+RowBox[{","," "}]],"that"," ","are"," ","to"," ","their"," ","benefit",StyleBox[RowBox[
+{"."," "}]],"If"," ","your"," ","key"," ","is"," ","compromised",StyleBox[RowBox[
+{","," "}]],"I"," ","don't"," ","think"," ","that"," ","TD"," ","will"," ","care"," ","very"," ","much",StyleBox[
+RowBox[{"."," "}]],"\n","\n","\n"}],"Text",ExpressionUUID -> "bafc6efd-a1c0-4ef6-a103-e871beb6840e"],Cell[
+
+"\<\>","Text",ExpressionUUID -> "9a54faa9-d47d-4443-85cb-f04c3f59c5a2"]},Open],ExpressionUUID -> "75934b4d-623b-4694-a0ec-f5551f32b6b5"]},
+Open],ExpressionUUID -> "8583b89d-bd25-4cb9-9a1f-cecae56d0034"]},StyleDefinitions -> "Default.nb",
+FrontEndVersion -> "12.2 for Wolfram Cloud 1.57.0.2 (December 8, 2020)"]
